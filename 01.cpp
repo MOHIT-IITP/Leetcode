@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long;
 vector<int> twoSum(vector<int> &nums, int target) {
   for (int i = 0; i < nums.size() - 1; i++) {
     for (int j = i + 1; j < nums.size(); j++) {
