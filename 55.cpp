@@ -1,27 +1,21 @@
-#include<bits/stdc++.h>
-#include<iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-void canJump(vector<int>& nums){
-  int last = n-1;
-  int lastelem = nums[n-1];
-  int n = nums.size();
-  if(n-2==1){
-    swap(nums[n-1],nums[n-2]);
-    nums.pop_back();
+class Solution {
+public:
+  bool canJump(vector<int> &nums) {
+    int maxStep = 0;
+    for (int i = 0; i < nums.size(); i++) {
+      int x = i + nums[i];
+      if (i > maxStep)
+        return false;
+      maxStep = max(maxStep, x);
+    }
+    if (maxStep < nums.size() - 1) {
+      return false;
+    }
+    return true;
   }
-  int index = 0;
-  int currentpos = nums[index];
-  while(currentpos >0){
-    index ++;
-    currentpos--;
-  }
-  currentpos = nums[index];
-}
+};
 
-int main(){
-  vector<int> nums({3,2,1});
-  canJump(nums);
-  return 0;
-}
+int main() { return 0; }
