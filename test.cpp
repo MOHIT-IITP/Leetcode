@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 /*int getKLargestElement(vector<int>& nums, int k){*/
@@ -34,10 +34,14 @@ using namespace std;
 /*}*/
 /**/
 
-int main(){
-  int n;
-  cin>>n;
-  setfill('0')<<setw(4)<<n;
-  cout<<n;
+int main() {
+  char x = 'a';
+  int y = 'E' - 'A' + 1;
+
+  int b = 99;
+  char s = b;
+
+  cout << y << endl;
+  cout << s << endl;
   return 0;
 }
