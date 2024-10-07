@@ -3,22 +3,15 @@
 using namespace std;
 
 int minLength(string s){
-  stack<char> st;
-  st.push('#');
-  for(int i=0;i<s.size();i++){
-    st.push(s[i]);
-    if(st.top()=='B'){
-      st.pop();
-      if(st.top()=='A')st.pop();
-      else st.push('B');
+    stack<char> st;
+    for(char it : s){
+        if(!st.empty() &&  (it == 'B' && st.top() == 'A') || (it == 'D' && st.top() == 'C')){
+            st.pop();
+        }else{
+            st.push(it);
+        }
     }
-    else if(st.top()=='D'){
-      st.pop();
-      if(st.top()=='C')st.pop();
-      else st.push('D');
-    }
-  }
-  return st.size()-1;
+    return st.size();
 }
 
 
