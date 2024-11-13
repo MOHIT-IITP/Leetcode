@@ -6,6 +6,7 @@ class Solution{
             double maxA = 0;
             double currS = 0;
             int n = nums.size();
+            if(n < k) return 0.0;
             for(int i =0;i<k;++i){
                 currS += nums[i];
             }
