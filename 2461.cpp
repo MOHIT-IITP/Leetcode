@@ -7,7 +7,7 @@ long long maximumSubarraySum(vector<int> &nums, int k) {
   unordered_set<int> s;
 
   while (right < nums.size()) {
-    while (s.count(nums[right] || s.size() == k)) {
+    while (s.count(nums[right]) || s.size() == k)) {
       currSum -= nums[left];
       s.erase(nums[left]);
       left++;
