@@ -1,8 +1,17 @@
+using namespace   std;
+#define ll long long
 #include<bits/stdc++.h>
-using namespace std;
+
+int solve(){
+    int n , m; cin>>n>> m;
+}
+
 int main(){
-    vector<int> vec = {1,2,3,4,5};
-    cout<<*max_element(vec.begin(), vec.end());
-    cout<<"hello world"<<endl;
+    int t;
+    cin>>t;
+    while(t--){
+        solve();
+    }
     return 0;
+
 }
