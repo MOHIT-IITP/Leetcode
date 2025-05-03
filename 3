@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
+
+        int n  = tops.size();
+        vector<int> vec(n, -1);
+
+        for(auto t : tops){
+            vec[t]++;
+        }
+        int index = 0;
+        int maxi = INT_MIN;
+        for(int v = 1;v<vec.size();v++){
+            if(vec[v] > maxi ){
+                maxi = max(maxi , vec[i]);
+                index = v;
+            }
+        }
+        int count = 0;
+        for(int i = 0 ; i < tops.size() ; i++ ){
+            if(tops[i] != index && bottoms[i] == index){
+                count++;
+            }else if(tops[i] != index && bottoms[i] != index){
+                return -1;
+            }
+        }
+        return count;
+    }
+};
+
