@@ -1,43 +1,40 @@
-#include <bits/stdc++.h>
-using namespace std;
 class Solution {
 public:
-  vector<vector<int>> highestPeak(vector<vector<int>> &isWater) {
-    int R = isWater.size();
-    int C = isWater[0].size();
-    vector<vector<int>> height(
-        R, vector<int>(C, R + C)); // Initialize with a safe sentinel value
+    vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
+      int n = isWater.size();
+      int m = isWater[0].size();
 
-    // First pass: set water cells to 0 and propagate height from top-left to
-    // bottom-right
-    for (int i = 0; i < R; i++) {
-      for (int j = 0; j < C; j++) {
-        if (isWater[i][j] == 1) {
-          height[i][j] = 0; // Water cell has height 0
-        } else {
-          if (i > 0)
-            height[i][j] =
-                min(height[i][j], height[i - 1][j] + 1); // Check from top
-          if (j > 0)
-            height[i][j] =
-                min(height[i][j], height[i][j - 1] + 1); // Check from left
+      vector<vector<int>> vis(n, vector<int> (m, 0));
+      vector<vector<int>> dist(n, vector<int> (m, 0));
+
+      queue<pair<pair<int, int> , int>> q;
+      for(int i =0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(isWater[i][j] == 1){
+                q.push({{i,j},0});
+                vis[i][j]  = 1;
+            }
         }
       }
-    }
+      int rdir[] = {-1, 0, 1, 0};
+      int cdir[] = {0, 1, 0, -1};
+      while(!q.empty()){
+        int row = q.front().first.first;
+        int col = q.front().first.second;
+        int step = q.front().second;
 
-    // Second pass: propagate height from bottom-right to top-left
-    for (int i = R - 1; i >= 0; i--) {
-      for (int j = C - 1; j >= 0; j--) {
-        if (i < R - 1)
-          height[i][j] =
-              min(height[i][j], height[i + 1][j] + 1); // Check from bottom
-        if (j < C - 1)
-          height[i][j] =
-              min(height[i][j], height[i][j + 1] + 1); // Check from right
-      }
-    }
+        dist[row][col] = step;
+        q.pop();
+        for(int i = 0;i<4;i++){
+            int nrow = row + rdir[i];
+            int ncol = col + cdir[i];
 
-    return height;
-  }
+            if(nrow >=0 && nrow< isWater.size() && ncol >=0 && ncol < isWater[0].size() && vis[nrow][ncol] == 0 ){
+                q.push({{nrow, ncol}, step + 1});
+                vis[nrow][ncol]  = 1;
+            }
+        }
+      }  
+      return dist;
+    }
 };
-int main() { return 0; }
