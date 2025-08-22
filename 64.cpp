@@ -1,4 +1,5 @@
 
+// memoization method
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -26,11 +27,8 @@ public:
   }
 }
 
-int main(){
-  return 0;
-}
+// memoization method
 
-// doing the same question from top to down approach
 class Solution {
 private:
   int recur(int i, int j, vector<vector<int>> &grid, vector<vector<int>> &dp) {
@@ -55,3 +53,31 @@ public:
     return recur(0, 0, grid, dp);
   }
 }
+
+
+// tabulisation method
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int r = grid.size();
+        int c = grid[0].size();
+
+        vector<vector<int>> dp(r, vector<int> (c, 0));
+
+        dp[0][0] = grid[0][0];
+
+        for(int i = 0; i < r ; i++ ){
+            for( int  j = 0; j < c ; j++){
+                if(i == 0 && j == 0) continue;
+                
+                int left = INT_MAX, up = INT_MAX;
+                
+                if(i > 0) left = dp[i-1][j];
+                if(j > 0) up = dp[i][j-1];
+
+                dp[i][j] = grid[i][j] + min(left , up);
+            }
+        }
+        return dp[r-1][c-1];
+    }
+};
