@@ -1,3 +1,4 @@
+ // sliding window technique
 class Solution{
     public:
         int longestSubarray(vector<int> & nums){
@@ -18,6 +19,4 @@ class Solution{
             return maxLength;
         }
 }
-int main(){
-    return 0;
-}
+ 
