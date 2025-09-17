@@ -18,3 +18,26 @@ int main()
   cout<<res<<endl;
   return 0;
 }
+
+
+
+
+// using boyer moore voting algo
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        int idx = 0;
+
+        for(int i = 0 ;i < n; i++){
+            if(intervals[idx][1] >= intervals[i][0]){
+                intervals[idx][1] = max(intervals[idx][1] , intervals[i][1]);
+            }else{
+                idx++;
+                intervals[idx]= intervals[i];
+            }
+        }
+        intervals.erase(intervals.begin() + idx, intervals.end());
+        return intervals;
+    }
+};
