@@ -1,25 +1,26 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
-  vector<vector<string>> groupAnagrams(vector<string> &strs) {
-    vector<vector<string>> ans;
-    unordered_map<string, vector<string>> mp;
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+      unordered_map<string, vector<string>> mp;
 
-    // storing the sorted string in the map to find easily
-    for (string &s : strs) {
-      string sorted = s;
-      sort(sorted.begin(), sorted.end());
-      mp[sorted].push_back(s);
+      for(auto it : strs){
+        string temp = it; // eat
+        sort(temp.begin(), temp.end()); // aet
+        mp[temp].push_back(it); // push back in original in mp
+      }
+
+      vector<vector<string>> vec;
+      for(auto [first, second]: mp){
+        vec.push_back(second);
+      }
+      return vec;
     }
-
-    // finding the similar and putting in the ans
-    for (auto &[_, group] : mp) {
-      ans.push_back(group);
-    }
-
-    return ans;
-  }
 };
-int main() { return 0; }
+
+
+
+// eat , tea , tan , ate , nat , bat 
+
+// eat , tea, ate
+// tan , nat 
+// bat 
